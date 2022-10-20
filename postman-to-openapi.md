@@ -4,9 +4,12 @@
 ```
 # From https://www.npmjs.com/package/postman-to-openapi
 npm i postman-to-openapi -g
+cp ~/taroworks/taroworks_api/integration-tests/latest-postman-tests.json ./postman-temp.json
+
 p2o ./path/to/PostmantoCollection.json -f ./path/to/result.yml
 # for example:
 p2o ~/taroworks/taroworks_api/integration-tests/latest-postman-tests.json -f ./swagger-temp.yaml
+sed 's/\/rm-[0-9]*-rm//g' swagger-temp.yaml > swagger.yaml
 ```
 4. Depending on how the swagger document is structured, you may wish to transform some values:
 ```
@@ -17,7 +20,7 @@ yq -i '
   .servers[0].url = "https://yoursalesforceenv.salesforce.com"
 ' swagger-temp.yaml
 
-sed -i '/{{clientid}}/salesforce
+mv swagger-temp.yaml swagger.yaml
 
 ```
 

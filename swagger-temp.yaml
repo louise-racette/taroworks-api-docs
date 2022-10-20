@@ -10,7 +10,7 @@ components:
       type: http
       scheme: noauth
 paths:
-  /services/oauth2/token:
+  /rm-1-rm/services/oauth2/token:
     post:
       tags:
         - default
@@ -54,7 +54,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /services/apexrest/formdata/v1:
+  /rm-2-rm/services/apexrest/formdata/v1:
     put:
       tags:
         - default
@@ -97,7 +97,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /services/apexrest/formdata/v1:
+  /rm-3-rm/services/apexrest/formdata/v1:
     put:
       tags:
         - default
@@ -150,7 +150,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /services/apexrest/formdata/v1:
+  /rm-4-rm/services/apexrest/formdata/v1:
     get:
       tags:
         - default
@@ -181,7 +181,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /services/apexrest/formdata/v1:
+  /rm-5-rm/services/apexrest/formdata/v1:
     get:
       tags:
         - default
@@ -212,7 +212,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /services/apexrest/formdata/v1:
+  /rm-6-rm/services/apexrest/formdata/v1:
     get:
       tags:
         - default
@@ -248,7 +248,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /services/apexrest/questiondata/v1:
+  /rm-7-rm/services/apexrest/questiondata/v1:
     put:
       tags:
         - default
@@ -304,7 +304,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /services/apexrest/questiondata/v1:
+  /rm-8-rm/services/apexrest/questiondata/v1:
     put:
       tags:
         - default
@@ -360,7 +360,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /services/apexrest/questiondata/v1:
+  /rm-9-rm/services/apexrest/questiondata/v1:
     put:
       tags:
         - default
@@ -416,7 +416,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /services/apexrest/questiondata/v1:
+  /rm-10-rm/services/apexrest/questiondata/v1:
     put:
       tags:
         - default
@@ -478,7 +478,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /services/apexrest/questiondata/v1:
+  /rm-11-rm/services/apexrest/questiondata/v1:
     put:
       tags:
         - default
@@ -628,7 +628,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /services/apexrest/questiondata/v1:
+  /rm-12-rm/services/apexrest/questiondata/v1:
     put:
       tags:
         - default
@@ -708,7 +708,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /services/apexrest/questiondata/v1:
+  /rm-13-rm/services/apexrest/questiondata/v1:
     put:
       tags:
         - default
@@ -764,7 +764,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /services/apexrest/formdata/v1:
+  /rm-14-rm/services/apexrest/formdata/v1:
     get:
       tags:
         - default
@@ -795,7 +795,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /services/apexrest/formdata/v1:
+  /rm-15-rm/services/apexrest/formdata/v1:
     get:
       tags:
         - default
@@ -831,7 +831,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /services/apexrest/formdata/v1:
+  /rm-16-rm/services/apexrest/formdata/v1:
     get:
       tags:
         - default
@@ -867,7 +867,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /services/apexrest/formdata/v1123:
+  /rm-17-rm/services/apexrest/formdata/v1123:
     get:
       tags:
         - default
@@ -903,7 +903,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /services/apexrest/formdata/v1:
+  /rm-18-rm/services/apexrest/formdata/v1:
     get:
       tags:
         - default
@@ -939,7 +939,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /services/apexrest/formdata/v1:
+  /rm-19-rm/services/apexrest/formdata/v1:
     put:
       tags:
         - default
@@ -1002,7 +1002,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /services/apexrest/formdata/v1:
+  /rm-20-rm/services/apexrest/formdata/v1:
     put:
       tags:
         - default
