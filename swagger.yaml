@@ -1,18 +1,29 @@
 openapi: 3.0.0
 info:
-  title: TW API Tests Cleaned
+  title: TaroWorks API
   version: 1.0.0
 servers:
-  - url: http://{{url}}
+  - url: https://yoursalesforceenv.salesforce.com
+components:
+  securitySchemes:
+    noauthAuth:
+      type: http
+      scheme: noauth
 paths:
   /services/oauth2/token:
     post:
       tags:
         - default
-      summary: Oauth Login
+      summary: Login - get access token
       requestBody:
         content: {}
+      security:
+        - noauthAuth: []
       parameters:
+        - name: ''
+          in: header
+          schema:
+            type: string
         - name: grant_type
           in: query
           schema:
@@ -27,7 +38,7 @@ paths:
           in: query
           schema:
             type: string
-          example: '{{clientsecret}}'
+          example: '{{client_secret}}'
         - name: username
           in: query
           schema:
@@ -37,42 +48,17 @@ paths:
           in: query
           schema:
             type: string
-          example: '{{password}}'
+          example: '{{password}}{{token}}'
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
-  /services/apexrest/formdata:
-    get:
-      tags:
-        - default
-      summary: GET Form 2
-      parameters:
-        - name: Authorization
-          in: header
-          schema:
-            type: string
-          example: OAuth {{access_token}}
-        - name: Content-Type
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: objectType
-          in: query
-          schema:
-            type: string
-          example: GetFormData123
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
+  /services/apexrest/formdata/v1:
     put:
       tags:
         - default
-      summary: PUT Form 12
+      summary: Exception - JSON Mapping not found
       requestBody:
         content:
           application/json:
@@ -80,79 +66,36 @@ paths:
               type: object
               example:
                 records:
-                  - ExternalId: '456'
-                    id: a0h5g000002z3KXAAY
-                    name: Demo 123
-                    alias: demo
-                    messageAfterSubmission: Thank you for taking the time to complete this form!
-                    description: This form was inserted through API on 30th Sept
-                    status: Draft
-                    formVersion:
-                      - versionid: a0g5g000002OBAWAA4
-                        changeLogNumber: '2'
-                  - ExternalId: '123'
+                  - externalId: '123'
                     id: ''
-                    name: Next Demo
-                    alias: demo1
+                    name: a100000
+                    alias: a100000
                     messageAfterSubmission: Thank you for taking the time to complete this form!
-                    description: This form was inserted through API on 30th Sept
+                    description: This form was inserted through API on 4th Oct
                     status: Draft
                     formVersion:
-                      - versionid: ''
-                        changeLogNumber: ''
-      parameters:
-        - name: Authorization
-          in: header
-          schema:
-            type: string
-          example: OAuth {{access_token}}
-        - name: Content-Type
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: objectType
-          in: query
-          schema:
-            type: string
-          example: PutFormData12
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /services/apexrest/f233ormdata:
-    put:
-      tags:
-        - default
-      summary: PUT Form 233
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              example:
-                records:
-                  - ExternalId: '456'
-                    id: a0h5g000002z3KXAAY
-                    name: Demo 123
-                    alias: demo
+                      - versionid: a0g5g000002OBs7AAG
+                        changeLogNumber: '0'
+                  - externalId: '234'
+                    id: a0h5g000002z4fVAAQ
+                    name: a10010
+                    alias: a10010
                     messageAfterSubmission: Thank you for taking the time to complete this form!
-                    description: This form was inserted through API on 30th Sept
+                    description: This form was inserted through API on 4th Oct
                     status: Draft
                     formVersion:
-                      - versionid: a0g5g000002OBAWAA4
-                        changeLogNumber: '2'
-                  - ExternalId: '123'
-                    id: ''
-                    name: Next Demo
-                    alias: demo1
+                      - versionid: a0g5g000002OBtZAAW
+                        changeLogNumber: '1'
+                  - externalId: '345'
+                    id: a0h5g000002zARTAA2
+                    name: a1010
+                    alias: a1010
                     messageAfterSubmission: Thank you for taking the time to complete this form!
-                    description: This form was inserted through API on 30th Sept
+                    description: This form was inserted through API on 4th Oct
                     status: Draft
                     formVersion:
-                      - versionid: ''
-                        changeLogNumber: ''
+                      - versionid: a0g5g000002OFNOAA4
+                        changeLogNumber: '0'
       parameters:
         - name: Authorization
           in: header
@@ -174,11 +117,53 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /services/apexrest/formdata123:
     get:
       tags:
         - default
-      summary: GET Form 123
+      summary: Exception - JSON Mapping Not Found
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: OAuth {{token}}
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: objectType
+          in: query
+          schema:
+            type: string
+          example: GetFormData123
+        - name: startNumber
+          in: query
+          schema:
+            type: integer
+          example: '0'
+        - name: endNumber
+          in: query
+          schema:
+            type: integer
+          example: '10'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /services/apexrest/questiondata/v1:
+    put:
+      tags:
+        - default
+      summary: Question - Update Repeat Section
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\"records\": [\r\n        {\r\n            \"externalId\":\"RS1\",\r\n            \"id\": \"a0S5g0000010rfzEAA\",\r\n            \"name\": \"RepeatSection\",\r\n            \"canbeDownloadedInTheEditForm\": false,\r\n            \"caption\": \"RepeatSection\",\r\n            \"cascadingLevel\": \"\",\r\n            \"cascadingSelect\": \"\",\r\n            \"controllingQuestion\": \"\",\r\n            \"displayRepeatSectionInTable\": true,\r\n            \"doAfter\": \"\",\r\n            \"doBefore\": \"\",\r\n            \"dynamicOperationType\": \"\",\r\n            \"exampleOfValidResponse\": \"\",\r\n            \"firstVersion\": 1,\r\n            \"form\": \"a0h5g000002zEH9AAM\",\r\n            \"formVersion\": \"a0g5g000002OHzMAAW\",\r\n            \"hidden\": false,\r\n            \"lastVersion\": \"\",\r\n            \"maximum\": 0.000000,\r\n            \"maxInstance\": 0,\r\n            \"minimum\": 0.000000,\r\n            \"parent\": \"\",\r\n            \"position\": 2,\r\n            \"ppiResultField\": \"\",\r\n            \"previousVersion\": \"\",\r\n            \"printAnswer\": false,\r\n            \"remoteId\": \"\",\r\n            \"remoteLibrary\": \"\",\r\n            \"remoteServerId\": \"\",\r\n            \"repeatSourceValue\": \"\",\r\n            \"repeatTimes\": \"3\",\r\n            \"required\": true,\r\n            \"responseValidation\": \"\",\r\n            \"showAllQuestionOnOnePage\": true,\r\n            \"skipLogicBehavior\": \"Show\",\r\n            \"skipLogicOperator\": \"All\",\r\n            \"hint\": \"\",\r\n            \"testDynamicOperation\": false,\r\n            \"type\": \"repeat\",\r\n            \"useCurrentTimeAsDefault\": false,\r\n            \"changeLogNumber\": \"5\",\r\n            \"options\": []\r\n        }\r\n        \r\n    ]\r\n}"
       parameters:
         - name: Authorization
           in: header
@@ -194,7 +179,43 @@ paths:
           in: query
           schema:
             type: string
+          example: PutQuestionData
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /services/apexrest/formdata/v1123:
+    get:
+      tags:
+        - default
+      summary: Exception - invalid URL
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: OAuth {{token}}
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: objectType
+          in: query
+          schema:
+            type: string
           example: GetFormData
+        - name: startNumber
+          in: query
+          schema:
+            type: integer
+          example: '0'
+        - name: endNumber
+          in: query
+          schema:
+            type: integer
+          example: '10'
       responses:
         '200':
           description: Successful response
