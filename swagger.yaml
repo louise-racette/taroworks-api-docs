@@ -1,9 +1,9 @@
 openapi: 3.0.0
 info:
-  title: API Demo Form Tests October 21 for Swagger
+  title: TaroWorks API 
   version: 1.0.0
 servers:
-  - url: http://devinstance.develop.my.salesforce/
+  - url: http://instance.develop.my.salesforce.com
 components:
   securitySchemes:
     noauthAuth:
@@ -110,7 +110,7 @@ paths:
     get:
       tags:
         - default
-      summary: Question - get by limit and offset, name, or ID
+      summary: Form - get by limit and offset, name, or ID
       parameters:
         - name: Authorization
           in: header
@@ -136,12 +136,16 @@ paths:
           in: query
           schema:
             type: integer
-          example: '17'
+          example: '10'
+        - name: name
+          in: query
+          schema:
+            type: string
+          example: my form
         - name: id
           in: query
           schema:
             type: string
-          example: a0h4w00000QwnWTAAZ
       responses:
         '200':
           description: Successful response
@@ -172,22 +176,20 @@ paths:
                 \"formVersion\": \"a0g5g000002OHzM\",\n      \"hidden\":
                 false,\n      \"lastVersion\": 1,\n      \"maximum\":
                 \"\",\n      \"maxInstance\": 0,\n      \"minimum\":
-                \"\",\n      \"parent\": \"\",\n      \"position\":
-                1,\n      \"ppiResultField\": \"\",\n     
-                \"previousVersion\": \"\",\n      \"printAnswer\":
-                false,\n      \"remoteId\": \"\",\n      \"remoteLibrary\":
-                \"\",\n      \"remoteServerId\": \"\",\n     
-                \"repeatSourceValue\": \"\",\n      \"repeatTimes\":
-                \"\",\n      \"required\": true,\n     
+                \"\",\n      \"parent\": \"\",\n      \"position\": 1,\n     
+                \"ppiResultField\": \"\",\n      \"previousVersion\":
+                \"\",\n      \"printAnswer\": false,\n      \"remoteId\":
+                \"\",\n      \"remoteLibrary\": \"\",\n      \"remoteServerId\":
+                \"\",\n      \"repeatSourceValue\": \"\",\n     
+                \"repeatTimes\": \"\",\n      \"required\": true,\n     
                 \"responseValidation\": \"\",\n     
                 \"showAllQuestionOnOnePage\": false,\n     
                 \"skipLogicBehavior\": \"Show\",\n      \"skipLogicOperator\":
-                \"All\",\n      \"hint\": \"\",\n     
-                \"testDynamicOperation\": false,\n      \"type\":
-                \"section\",\n      \"useCurrentTimeAsDefault\":
-                false,\n      \"changeLogNumber\": \"0\"\n    },\n   
-                {\n      \"externalId\": \"Q1\",\n      \"id\":
-                \"\",\n      \"name\": \"enter_your_age\",\n     
+                \"All\",\n      \"hint\": \"\",\n      \"testDynamicOperation\":
+                false,\n      \"type\": \"section\",\n     
+                \"useCurrentTimeAsDefault\": false,\n      \"changeLogNumber\":
+                \"0\"\n    },\n    {\n      \"externalId\": \"Q1\",\n     
+                \"id\": \"\",\n      \"name\": \"enter_your_age\",\n     
                 \"canbeDownloadedInTheEditForm\": false,\n      \"caption\":
                 \"enter_your_age\",\n      \"cascadingLevel\": \"\",\n     
                 \"options\": [],\n      \"cascadingSelect\": \"\",\n     
@@ -200,22 +202,20 @@ paths:
                 \"formVersion\": \"a0g5g000002OHzM\",\n      \"hidden\":
                 false,\n      \"lastVersion\": 1,\n      \"maximum\":
                 \"\",\n      \"maxInstance\": 0,\n      \"minimum\":
-                \"\",\n      \"parent\": \"S1\",\n      \"position\":
-                1,\n      \"ppiResultField\": \"\",\n     
-                \"previousVersion\": \"\",\n      \"printAnswer\":
-                false,\n      \"remoteId\": \"\",\n      \"remoteLibrary\":
-                \"\",\n      \"remoteServerId\": \"\",\n     
-                \"repeatSourceValue\": \"\",\n      \"repeatTimes\":
-                \"\",\n      \"required\": true,\n     
+                \"\",\n      \"parent\": \"S1\",\n      \"position\": 1,\n     
+                \"ppiResultField\": \"\",\n      \"previousVersion\":
+                \"\",\n      \"printAnswer\": false,\n      \"remoteId\":
+                \"\",\n      \"remoteLibrary\": \"\",\n      \"remoteServerId\":
+                \"\",\n      \"repeatSourceValue\": \"\",\n     
+                \"repeatTimes\": \"\",\n      \"required\": true,\n     
                 \"responseValidation\": \"\",\n     
                 \"showAllQuestionOnOnePage\": false,\n     
                 \"skipLogicBehavior\": \"Show\",\n      \"skipLogicOperator\":
-                \"All\",\n      \"hint\": \"\",\n     
-                \"testDynamicOperation\": false,\n      \"type\":
-                \"number-integer\",\n      \"useCurrentTimeAsDefault\":
-                false,\n      \"changeLogNumber\": \"0\"\n    },\n   
-                {\n      \"externalId\": \"RS1\",\n      \"id\":
-                \"\",\n      \"name\": \"RepeatSection\",\n     
+                \"All\",\n      \"hint\": \"\",\n      \"testDynamicOperation\":
+                false,\n      \"type\": \"number-integer\",\n     
+                \"useCurrentTimeAsDefault\": false,\n      \"changeLogNumber\":
+                \"0\"\n    },\n    {\n      \"externalId\": \"RS1\",\n     
+                \"id\": \"\",\n      \"name\": \"RepeatSection\",\n     
                 \"canbeDownloadedInTheEditForm\": false,\n      \"caption\":
                 \"RepeatSection\",\n      \"cascadingLevel\": \"\",\n     
                 \"options\": [],\n      \"cascadingSelect\": \"\",\n     
@@ -228,22 +228,20 @@ paths:
                 \"formVersion\": \"a0g5g000002OHzM\",\n      \"hidden\":
                 false,\n      \"lastVersion\": 1,\n      \"maximum\":
                 \"\",\n      \"maxInstance\": 0,\n      \"minimum\":
-                \"\",\n      \"parent\": \"\",\n      \"position\":
-                2,\n      \"ppiResultField\": \"\",\n     
-                \"previousVersion\": \"\",\n      \"printAnswer\":
-                false,\n      \"remoteId\": \"\",\n      \"remoteLibrary\":
-                \"\",\n      \"remoteServerId\": \"\",\n     
-                \"repeatSourceValue\": \"Q1\",\n      \"repeatTimes\":
-                \"\",\n      \"required\": true,\n     
+                \"\",\n      \"parent\": \"\",\n      \"position\": 2,\n     
+                \"ppiResultField\": \"\",\n      \"previousVersion\":
+                \"\",\n      \"printAnswer\": false,\n      \"remoteId\":
+                \"\",\n      \"remoteLibrary\": \"\",\n      \"remoteServerId\":
+                \"\",\n      \"repeatSourceValue\": \"Q1\",\n     
+                \"repeatTimes\": \"\",\n      \"required\": true,\n     
                 \"responseValidation\": \"\",\n     
                 \"showAllQuestionOnOnePage\": true,\n     
                 \"skipLogicBehavior\": \"Show\",\n      \"skipLogicOperator\":
-                \"All\",\n      \"hint\": \"\",\n     
-                \"testDynamicOperation\": false,\n      \"type\":
-                \"repeat\",\n      \"useCurrentTimeAsDefault\":
-                false,\n      \"changeLogNumber\": \"0\"\n    },\n   
-                {\n      \"externalId\": \"RSQ1\",\n      \"id\":
-                \"\",\n      \"name\": \"address\",\n     
+                \"All\",\n      \"hint\": \"\",\n      \"testDynamicOperation\":
+                false,\n      \"type\": \"repeat\",\n     
+                \"useCurrentTimeAsDefault\": false,\n      \"changeLogNumber\":
+                \"0\"\n    },\n    {\n      \"externalId\": \"RSQ1\",\n     
+                \"id\": \"\",\n      \"name\": \"address\",\n     
                 \"canbeDownloadedInTheEditForm\": false,\n      \"caption\":
                 \"address\",\n      \"cascadingLevel\": \"\",\n     
                 \"options\": [],\n      \"cascadingSelect\": \"\",\n     
@@ -256,54 +254,51 @@ paths:
                 \"formVersion\": \"a0g5g000002OHzM\",\n      \"hidden\":
                 false,\n      \"lastVersion\": 1,\n      \"maximum\":
                 \"\",\n      \"maxInstance\": 0,\n      \"minimum\":
-                \"\",\n      \"parent\": \"RS1\",\n      \"position\":
-                1,\n      \"ppiResultField\": \"\",\n     
-                \"previousVersion\": \"\",\n      \"printAnswer\":
-                false,\n      \"remoteId\": \"\",\n      \"remoteLibrary\":
-                \"\",\n      \"remoteServerId\": \"\",\n     
-                \"repeatSourceValue\": \"\",\n      \"repeatTimes\":
-                \"\",\n      \"required\": true,\n     
+                \"\",\n      \"parent\": \"RS1\",\n      \"position\": 1,\n     
+                \"ppiResultField\": \"\",\n      \"previousVersion\":
+                \"\",\n      \"printAnswer\": false,\n      \"remoteId\":
+                \"\",\n      \"remoteLibrary\": \"\",\n      \"remoteServerId\":
+                \"\",\n      \"repeatSourceValue\": \"\",\n     
+                \"repeatTimes\": \"\",\n      \"required\": true,\n     
                 \"responseValidation\": \"\",\n     
                 \"showAllQuestionOnOnePage\": false,\n     
                 \"skipLogicBehavior\": \"Show\",\n      \"skipLogicOperator\":
-                \"All\",\n      \"hint\": \"\",\n     
-                \"testDynamicOperation\": false,\n      \"type\":
-                \"text-long\",\n      \"useCurrentTimeAsDefault\":
-                false,\n      \"changeLogNumber\": \"0\"\n    },\n   
-                {\n      \"externalId\": \"Q2\",\n      \"id\":
-                \"\",\n      \"name\": \"gender\",\n     
+                \"All\",\n      \"hint\": \"\",\n      \"testDynamicOperation\":
+                false,\n      \"type\": \"text-long\",\n     
+                \"useCurrentTimeAsDefault\": false,\n      \"changeLogNumber\":
+                \"0\"\n    },\n    {\n      \"externalId\": \"Q2\",\n     
+                \"id\": \"\",\n      \"name\": \"gender\",\n     
                 \"canbeDownloadedInTheEditForm\": false,\n      \"caption\":
-                \"gender\",\n      \"cascadingLevel\": \"\",\n     
-                \"options\": [\n        {\n          \"externalId\":
-                \"O1\",\n          \"id\": \"\",\n          \"name\":
-                \"male\",\n          \"position\": 1,\n         
-                \"caption\": \"male\"\n        },{\n         
-                \"externalId\": \"O2\",\n          \"id\": \"\",\n         
-                \"name\": \"female\",\n          \"position\": 2,\n         
-                \"caption\": \"female\"\n        }\n      ],\n     
-                \"cascadingSelect\": \"\",\n      \"controllingQuestion\":
-                \"\",\n      \"displayRepeatSectionInTable\": false,\n     
-                \"doAfter\": \"\",\n      \"doBefore\": \"\",\n     
+                \"gender\",\n      \"cascadingLevel\": \"\",\n      \"options\":
+                [\n        {\n          \"externalId\": \"O1\",\n         
+                \"id\": \"\",\n          \"name\": \"male\",\n         
+                \"position\": 1,\n          \"caption\": \"male\"\n       
+                },{\n          \"externalId\": \"O2\",\n          \"id\":
+                \"\",\n          \"name\": \"female\",\n          \"position\":
+                2,\n          \"caption\": \"female\"\n        }\n     
+                ],\n      \"cascadingSelect\": \"\",\n     
+                \"controllingQuestion\": \"\",\n     
+                \"displayRepeatSectionInTable\": false,\n      \"doAfter\":
+                \"\",\n      \"doBefore\": \"\",\n     
                 \"dynamicOperationType\": \"\",\n     
                 \"exampleOfValidResponse\": \"\",\n      \"firstVersion\":
                 1,\n      \"form\": \"a0h5g000002zEH9AAM\",\n     
                 \"formVersion\": \"a0g5g000002OHzM\",\n      \"hidden\":
                 false,\n      \"lastVersion\": 1,\n      \"maximum\":
                 \"\",\n      \"maxInstance\": 0,\n      \"minimum\":
-                \"\",\n      \"parent\": \"S1\",\n      \"position\":
-                2,\n      \"ppiResultField\": \"\",\n     
-                \"previousVersion\": \"\",\n      \"printAnswer\":
-                false,\n      \"remoteId\": \"\",\n      \"remoteLibrary\":
-                \"\",\n      \"remoteServerId\": \"\",\n     
-                \"repeatSourceValue\": \"\",\n      \"repeatTimes\":
-                \"\",\n      \"required\": true,\n     
+                \"\",\n      \"parent\": \"S1\",\n      \"position\": 2,\n     
+                \"ppiResultField\": \"\",\n      \"previousVersion\":
+                \"\",\n      \"printAnswer\": false,\n      \"remoteId\":
+                \"\",\n      \"remoteLibrary\": \"\",\n      \"remoteServerId\":
+                \"\",\n      \"repeatSourceValue\": \"\",\n     
+                \"repeatTimes\": \"\",\n      \"required\": true,\n     
                 \"responseValidation\": \"\",\n     
                 \"showAllQuestionOnOnePage\": false,\n     
                 \"skipLogicBehavior\": \"Show\",\n      \"skipLogicOperator\":
-                \"All\",\n      \"hint\": \"\",\n     
-                \"testDynamicOperation\": false,\n      \"type\":
-                \"radio\",\n      \"useCurrentTimeAsDefault\": false,\n     
-                \"changeLogNumber\": \"0\"\n    }\n  ]\n}"
+                \"All\",\n      \"hint\": \"\",\n      \"testDynamicOperation\":
+                false,\n      \"type\": \"radio\",\n     
+                \"useCurrentTimeAsDefault\": false,\n      \"changeLogNumber\":
+                \"0\"\n    }\n  ]\n}"
       parameters:
         - name: Authorization
           in: header
@@ -320,6 +315,46 @@ paths:
           schema:
             type: string
           example: PutQuestionData
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - default
+      summary: Question - get by limit and offset, name, or ID
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: OAuth {{access_token}}
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: objectType
+          in: query
+          schema:
+            type: string
+          example: GetQuestionData
+        - name: startNumber
+          in: query
+          schema:
+            type: integer
+          example: '0'
+        - name: endNumber
+          in: query
+          schema:
+            type: integer
+          example: '17'
+        - name: id
+          in: query
+          schema:
+            type: string
+          example: a0h4w00000QwnWTAAZ
       responses:
         '200':
           description: Successful response
