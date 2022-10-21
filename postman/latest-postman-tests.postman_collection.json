@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "7d372148-1da4-439e-b7ca-cf3acfc39b0a",
-		"name": "API Demo Form Tests October 21 2022",
+		"name": "API Demo Form Tests October 21",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "4246923"
 	},
@@ -15,7 +15,6 @@
 						"exec": [
 							"var data = JSON.parse(responseBody);",
 							"postman.setGlobalVariable(\"access_token\", data.access_token);",
-							"postman.setGlobalVariable(\"refresh_token\", data.refresh_token);",
 							"",
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
@@ -1388,7 +1387,7 @@
 							"});",
 							"",
 							"pm.test(\"Successful string in response\", function () {",
-							"    pm.expect(pm.response.text()).to.include(\"created successfully\");",
+							"    pm.expect(pm.response.text()).to.include(\"updated successfully\");",
 							"});"
 						],
 						"type": "text/javascript"
