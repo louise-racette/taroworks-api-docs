@@ -1,3 +1,4 @@
+# Convert POSTMan into Swagger
 1. Install node, npm and docker on your local system
 2. From POSTMan, export your tests to json
 3. Install and run postman-to-openapi to get an openAPI file. You can view the YAML file directly or use swagger editor.
@@ -8,8 +9,8 @@ cp ~/taroworks/taroworks_api/integration-tests/latest-postman-tests.json ./postm
 
 p2o ./path/to/PostmantoCollection.json -f ./path/to/result.yml
 # for example:
-p2o ~/taroworks/taroworks_api/integration-tests/latest-postman-tests.json -f ./swagger-temp.yaml
-p2o postman-temp.json -f ./swagger-temp.yaml
+p2o latest-postman-tests.json -f ./swagger-temp.yaml
+# Run SED commands if desired (like converting windows newlines into other Mac/Linux newlines)
 sed 's/\\r\\n/\
 /g' swagger-temp.yaml > swagger.yaml
 ```
@@ -32,7 +33,7 @@ mv swagger-temp.yaml swagger.yaml
 docker pull swaggerapi/swagger-editor
 docker run -d -p 80:8080 swaggerapi/swagger-editor
 ```
-5. Run prism with the file to setup a mocker server
+5. Run prism with the file to setup a mock server
 ```
 sudo npm install -g @stoplight/prism-cli
 prism mock api-spec/TW_sample.yaml
