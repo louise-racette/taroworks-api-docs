@@ -370,7 +370,7 @@ paths:
           in: header
           schema:
             type: string
-          example: OAuth {{access_token}}
+          example: OAuth {{token}}
         - name: Content-Type
           in: header
           schema:
@@ -394,16 +394,16 @@ paths:
     put:
       tags:
         - default
-      summary: External Id missing
+      summary: Insert New Form Mapping and Field Mapping
       requestBody:
         content:
           '*/*':
             schema:
               type: string
               example: >-
-                "{\r\n    \"records\": [\r\n        {\r\n\t\t\t\r\n           
-                \"id\": \"\",\r\n            \"name\": \"Created from
-                API\",\r\n            \"form\":
+                "{\r\n    \"records\": [\r\n        {\r\n\t\t\t\"externalId\" :
+                \"123\",\r\n            \"id\": \"\",\r\n            \"name\":
+                \"Created from API\",\r\n            \"form\":
                 \"a0hDn000000gLXeIAM\",\r\n            \"formVersion\":
                 \"a0gDn000000kXUeIAM\",\r\n           
                 \"formVersionMappingField\": \"\",\r\n           
@@ -480,9 +480,7 @@ paths:
           in: header
           schema:
             type: string
-          example: >-
-            OAuth
-            00DDn0000013HY4!AQoAQMMeTgThQZVl3NEROESfCJkOR9qk10FUU_dSjZZyF0djq.qIUNrBbXVT86lnC4i.a2ulLun60olpaMKpZmnct7SaxXrR
+          example: OAuth {{access_token}}
         - name: Content-Type
           in: header
           schema:
@@ -507,9 +505,7 @@ paths:
           in: header
           schema:
             type: string
-          example: >-
-            OAuth
-            00DDn0000013HY4!AQoAQMMeTgThQZVl3NEROESfCJkOR9qk10FUU_dSjZZyF0djq.qIUNrBbXVT86lnC4i.a2ulLun60olpaMKpZmnct7SaxXrR
+          example: OAuth {{access_token}}
         - name: Content-Type
           in: header
           schema:
