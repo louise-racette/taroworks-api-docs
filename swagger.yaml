@@ -364,7 +364,7 @@ paths:
     get:
       tags:
         - default
-      summary: get by formId
+      summary: Form/Field Mapping - Get by formId
       parameters:
         - name: Authorization
           in: header
@@ -394,7 +394,7 @@ paths:
     put:
       tags:
         - default
-      summary: Insert New Form Mapping and Field Mapping
+      summary: Form/Field Mapping - Insert New Form Mapping and Field Mapping
       requestBody:
         content:
           '*/*':
@@ -458,7 +458,7 @@ paths:
     put:
       tags:
         - default
-      summary: create/update SkipLogic
+      summary: Skip Logic - create/update SkipLogic
       requestBody:
         content:
           '*/*':
@@ -499,7 +499,7 @@ paths:
     get:
       tags:
         - default
-      summary: get by Limit and Offset
+      summary: Skip Logic - Get by Limit and Offset
       parameters:
         - name: Authorization
           in: header
