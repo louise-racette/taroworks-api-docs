@@ -360,3 +360,168 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /services/apexrest/formmappingdata/v1:
+    get:
+      tags:
+        - default
+      summary: get by formId
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: OAuth {{access_token}}
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: objectType
+          in: query
+          schema:
+            type: string
+          example: GetFormMappingData
+        - name: formId
+          in: query
+          schema:
+            type: string
+          example: a0hDn000000gLXeIAM
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - default
+      summary: External Id missing
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\r\n    \"records\": [\r\n        {\r\n\t\t\t\r\n           
+                \"id\": \"\",\r\n            \"name\": \"Created from
+                API\",\r\n            \"form\":
+                \"a0hDn000000gLXeIAM\",\r\n            \"formVersion\":
+                \"a0gDn000000kXUeIAM\",\r\n           
+                \"formVersionMappingField\": \"\",\r\n           
+                \"mobileUserField\": \"\",\r\n           
+                \"patScoreMappingField\": \"\",\r\n           
+                \"objectApiName\": \"Account\",\r\n           
+                \"formMappingField\": \"\",\r\n           
+                \"intervieweeMapField\": \"\",\r\n            \"isReference\":
+                false,\r\n            \"matchingField\": \"\",\r\n           
+                \"repeat\": \"a0SDn000000oknFMAQ\",\r\n           
+                \"useAsInterviewee\": false,\r\n           
+                \"submissionAPIField\": \"\",\r\n           
+                \"changeLogNumber\": \"12\",\r\n           
+                \"questionMappings\": [\r\n                {\r\n\"externalId\" :
+                \"213\",\r\n                    \"name\":
+                \"a0RDn000000y2Rs\",\r\n                    \"id\":
+                \"\",\r\n                    \"fieldAPIName\":
+                \"Name\",\r\n                    \"isBroken\":
+                false,\r\n                    \"question\":
+                \"a0SDn000000oknBMAQ\",\r\n                    \"scoringGroup\":
+                \"\"\r\n                },\r\n               
+                {\r\n\"externalId\" : \"321\",\r\n                    \"name\":
+                \"a0RDn000000y2Rt\",\r\n                    \"id\":
+                \"\",\r\n                    \"fieldAPIName\":
+                \"Description\",\r\n                    \"isBroken\":
+                false,\r\n                    \"question\":
+                \"a0SDn000000oknGMAQ\",\r\n                    \"scoringGroup\":
+                \"\"\r\n                }\r\n            ]\r\n        }\r\n   
+                ]\r\n}"
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: OAuth {{access_token}}
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: objectType
+          in: query
+          schema:
+            type: string
+          example: PutFormMappingData
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /services/apexrest/skiplogicdata/v1/:
+    put:
+      tags:
+        - default
+      summary: create/update SkipLogic
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\r\n\r\n    \"records\": [\r\n         {\r\n           
+                \"externalId\":\"1235\",\r\n            \"id\":
+                \"a0ZDn000000gw6kMAA\",\r\n            \"negate\":
+                false,\r\n            \"skipValue\": \"\",\r\n           
+                \"condition\": \"Answered\",\r\n            \"parentQuestion\":
+                \"a0SDn000000oknCMAQ\",\r\n            \"sourceQuestion\":
+                \"a0SDn000000oknBMAQ\",\r\n            \"form\":
+                \"a0hDn000000gLXeIAM\",\r\n            \"formVersion\":
+                \"a0gDn000000kXUeIAM\",\r\n            \"changeLogNumber\":
+                \"17\"\r\n        }\r\n    ]\r\n}   "
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            OAuth
+            00DDn0000013HY4!AQoAQMMeTgThQZVl3NEROESfCJkOR9qk10FUU_dSjZZyF0djq.qIUNrBbXVT86lnC4i.a2ulLun60olpaMKpZmnct7SaxXrR
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: objectType
+          in: query
+          schema:
+            type: string
+          example: PutSkipLogicData
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - default
+      summary: get by Limit and Offset
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            OAuth
+            00DDn0000013HY4!AQoAQMMeTgThQZVl3NEROESfCJkOR9qk10FUU_dSjZZyF0djq.qIUNrBbXVT86lnC4i.a2ulLun60olpaMKpZmnct7SaxXrR
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: objectType
+          in: query
+          schema:
+            type: string
+          example: GetSkipLogicData
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
