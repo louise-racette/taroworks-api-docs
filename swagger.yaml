@@ -4,11 +4,6 @@ info:
   version: 1.0.0
 servers:
   - url: http://instance.develop.my.salesforce.com
-components:
-  securitySchemes:
-    noauthAuth:
-      type: http
-      scheme: noauth
 paths:
   /services/oauth2/token:
     post:
@@ -63,29 +58,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              example:
-                records:
-                  - externalId: '{{formtimestamp}}-1'
-                    id: ''
-                    name: demo {{formtimestamp}}-1
-                    alias: demo {{formtimestamp}}-1
-                    messageAfterSubmission: Thank you for taking the time to complete this form!
-                    description: This form was inserted through API on {{$timestamp}}
-                    status: Draft
-                    formVersion:
-                      - versionid: ''
-                        changeLogNumber: ''
-                  - externalId: '{{formtimestamp}}-2'
-                    id: ''
-                    name: demo {{formtimestamp}}-2
-                    alias: demo {{formtimestamp}}-2
-                    messageAfterSubmission: Thank you for taking the time to complete this form!
-                    description: This form was inserted through API on {{$timestamp}}
-                    status: Draft
-                    formVersion:
-                      - versionid: ''
-                        changeLogNumber: ''
+              $ref: "#/components/schemas/FormRecords"
       parameters:
         - name: Authorization
           in: header
@@ -101,12 +74,15 @@ paths:
           in: query
           schema:
             type: string
+          required: true
           example: PutFormData
       responses:
         '200':
           description: Successful response
           content:
-            application/json: {}
+            application/json: 
+               schema:
+                  $ref: "#/components/schemas/ResponseArray" 
     get:
       tags:
         - default
@@ -150,6 +126,33 @@ paths:
         '200':
           description: Successful response
           content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FormSearch"
+    delete:
+      tags:
+        - default
+      summary: Form - Delete
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: OAuth {{access_token}}
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: query
+          schema:
+            type: string
+          example: '{{current_form_id}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
             application/json: {}
   /services/apexrest/questiondata/v1:
     put:
@@ -158,147 +161,9 @@ paths:
       summary: Question - create one or more questions
       requestBody:
         content:
-          '*/*':
+          application/json:
             schema:
-              type: string
-              example: >-
-                "{\n  \"records\": [\n    {\n      \"externalId\":
-                \"S1\",\n      \"id\": \"\",\n      \"name\": \"section
-                a\",\n      \"canbeDownloadedInTheEditForm\": false,\n     
-                \"caption\": \"Section A\",\n      \"cascadingLevel\":
-                \"\",\n      \"options\": [],\n      \"cascadingSelect\":
-                \"\",\n      \"controllingQuestion\": \"\",\n     
-                \"displayRepeatSectionInTable\": false,\n      \"doAfter\":
-                \"\",\n      \"doBefore\": \"\",\n     
-                \"dynamicOperationType\": \"\",\n     
-                \"exampleOfValidResponse\": \"\",\n      \"firstVersion\":
-                1,\n      \"form\": \"a0h5g000002zEH9AAM\",\n     
-                \"formVersion\": \"a0g5g000002OHzM\",\n      \"hidden\":
-                false,\n      \"lastVersion\": 1,\n      \"maximum\":
-                \"\",\n      \"maxInstance\": 0,\n      \"minimum\":
-                \"\",\n      \"parent\": \"\",\n      \"position\": 1,\n     
-                \"ppiResultField\": \"\",\n      \"previousVersion\":
-                \"\",\n      \"printAnswer\": false,\n      \"remoteId\":
-                \"\",\n      \"remoteLibrary\": \"\",\n      \"remoteServerId\":
-                \"\",\n      \"repeatSourceValue\": \"\",\n     
-                \"repeatTimes\": \"\",\n      \"required\": true,\n     
-                \"responseValidation\": \"\",\n     
-                \"showAllQuestionOnOnePage\": false,\n     
-                \"skipLogicBehavior\": \"Show\",\n      \"skipLogicOperator\":
-                \"All\",\n      \"hint\": \"\",\n      \"testDynamicOperation\":
-                false,\n      \"type\": \"section\",\n     
-                \"useCurrentTimeAsDefault\": false,\n      \"changeLogNumber\":
-                \"0\"\n    },\n    {\n      \"externalId\": \"Q1\",\n     
-                \"id\": \"\",\n      \"name\": \"enter_your_age\",\n     
-                \"canbeDownloadedInTheEditForm\": false,\n      \"caption\":
-                \"enter_your_age\",\n      \"cascadingLevel\": \"\",\n     
-                \"options\": [],\n      \"cascadingSelect\": \"\",\n     
-                \"controllingQuestion\": \"\",\n     
-                \"displayRepeatSectionInTable\": false,\n      \"doAfter\":
-                \"\",\n      \"doBefore\": \"\",\n     
-                \"dynamicOperationType\": \"\",\n     
-                \"exampleOfValidResponse\": \"\",\n      \"firstVersion\":
-                1,\n      \"form\": \"a0h5g000002zEH9AAM\",\n     
-                \"formVersion\": \"a0g5g000002OHzM\",\n      \"hidden\":
-                false,\n      \"lastVersion\": 1,\n      \"maximum\":
-                \"\",\n      \"maxInstance\": 0,\n      \"minimum\":
-                \"\",\n      \"parent\": \"S1\",\n      \"position\": 1,\n     
-                \"ppiResultField\": \"\",\n      \"previousVersion\":
-                \"\",\n      \"printAnswer\": false,\n      \"remoteId\":
-                \"\",\n      \"remoteLibrary\": \"\",\n      \"remoteServerId\":
-                \"\",\n      \"repeatSourceValue\": \"\",\n     
-                \"repeatTimes\": \"\",\n      \"required\": true,\n     
-                \"responseValidation\": \"\",\n     
-                \"showAllQuestionOnOnePage\": false,\n     
-                \"skipLogicBehavior\": \"Show\",\n      \"skipLogicOperator\":
-                \"All\",\n      \"hint\": \"\",\n      \"testDynamicOperation\":
-                false,\n      \"type\": \"number-integer\",\n     
-                \"useCurrentTimeAsDefault\": false,\n      \"changeLogNumber\":
-                \"0\"\n    },\n    {\n      \"externalId\": \"RS1\",\n     
-                \"id\": \"\",\n      \"name\": \"RepeatSection\",\n     
-                \"canbeDownloadedInTheEditForm\": false,\n      \"caption\":
-                \"RepeatSection\",\n      \"cascadingLevel\": \"\",\n     
-                \"options\": [],\n      \"cascadingSelect\": \"\",\n     
-                \"controllingQuestion\": \"\",\n     
-                \"displayRepeatSectionInTable\": true,\n      \"doAfter\":
-                \"\",\n      \"doBefore\": \"\",\n     
-                \"dynamicOperationType\": \"\",\n     
-                \"exampleOfValidResponse\": \"\",\n      \"firstVersion\":
-                1,\n      \"form\": \"a0h5g000002zEH9AAM\",\n     
-                \"formVersion\": \"a0g5g000002OHzM\",\n      \"hidden\":
-                false,\n      \"lastVersion\": 1,\n      \"maximum\":
-                \"\",\n      \"maxInstance\": 0,\n      \"minimum\":
-                \"\",\n      \"parent\": \"\",\n      \"position\": 2,\n     
-                \"ppiResultField\": \"\",\n      \"previousVersion\":
-                \"\",\n      \"printAnswer\": false,\n      \"remoteId\":
-                \"\",\n      \"remoteLibrary\": \"\",\n      \"remoteServerId\":
-                \"\",\n      \"repeatSourceValue\": \"Q1\",\n     
-                \"repeatTimes\": \"\",\n      \"required\": true,\n     
-                \"responseValidation\": \"\",\n     
-                \"showAllQuestionOnOnePage\": true,\n     
-                \"skipLogicBehavior\": \"Show\",\n      \"skipLogicOperator\":
-                \"All\",\n      \"hint\": \"\",\n      \"testDynamicOperation\":
-                false,\n      \"type\": \"repeat\",\n     
-                \"useCurrentTimeAsDefault\": false,\n      \"changeLogNumber\":
-                \"0\"\n    },\n    {\n      \"externalId\": \"RSQ1\",\n     
-                \"id\": \"\",\n      \"name\": \"address\",\n     
-                \"canbeDownloadedInTheEditForm\": false,\n      \"caption\":
-                \"address\",\n      \"cascadingLevel\": \"\",\n     
-                \"options\": [],\n      \"cascadingSelect\": \"\",\n     
-                \"controllingQuestion\": \"\",\n     
-                \"displayRepeatSectionInTable\": false,\n      \"doAfter\":
-                \"\",\n      \"doBefore\": \"\",\n     
-                \"dynamicOperationType\": \"\",\n     
-                \"exampleOfValidResponse\": \"\",\n      \"firstVersion\":
-                1,\n      \"form\": \"a0h5g000002zEH9AAM\",\n     
-                \"formVersion\": \"a0g5g000002OHzM\",\n      \"hidden\":
-                false,\n      \"lastVersion\": 1,\n      \"maximum\":
-                \"\",\n      \"maxInstance\": 0,\n      \"minimum\":
-                \"\",\n      \"parent\": \"RS1\",\n      \"position\": 1,\n     
-                \"ppiResultField\": \"\",\n      \"previousVersion\":
-                \"\",\n      \"printAnswer\": false,\n      \"remoteId\":
-                \"\",\n      \"remoteLibrary\": \"\",\n      \"remoteServerId\":
-                \"\",\n      \"repeatSourceValue\": \"\",\n     
-                \"repeatTimes\": \"\",\n      \"required\": true,\n     
-                \"responseValidation\": \"\",\n     
-                \"showAllQuestionOnOnePage\": false,\n     
-                \"skipLogicBehavior\": \"Show\",\n      \"skipLogicOperator\":
-                \"All\",\n      \"hint\": \"\",\n      \"testDynamicOperation\":
-                false,\n      \"type\": \"text-long\",\n     
-                \"useCurrentTimeAsDefault\": false,\n      \"changeLogNumber\":
-                \"0\"\n    },\n    {\n      \"externalId\": \"Q2\",\n     
-                \"id\": \"\",\n      \"name\": \"gender\",\n     
-                \"canbeDownloadedInTheEditForm\": false,\n      \"caption\":
-                \"gender\",\n      \"cascadingLevel\": \"\",\n      \"options\":
-                [\n        {\n          \"externalId\": \"O1\",\n         
-                \"id\": \"\",\n          \"name\": \"male\",\n         
-                \"position\": 1,\n          \"caption\": \"male\"\n       
-                },{\n          \"externalId\": \"O2\",\n          \"id\":
-                \"\",\n          \"name\": \"female\",\n          \"position\":
-                2,\n          \"caption\": \"female\"\n        }\n     
-                ],\n      \"cascadingSelect\": \"\",\n     
-                \"controllingQuestion\": \"\",\n     
-                \"displayRepeatSectionInTable\": false,\n      \"doAfter\":
-                \"\",\n      \"doBefore\": \"\",\n     
-                \"dynamicOperationType\": \"\",\n     
-                \"exampleOfValidResponse\": \"\",\n      \"firstVersion\":
-                1,\n      \"form\": \"a0h5g000002zEH9AAM\",\n     
-                \"formVersion\": \"a0g5g000002OHzM\",\n      \"hidden\":
-                false,\n      \"lastVersion\": 1,\n      \"maximum\":
-                \"\",\n      \"maxInstance\": 0,\n      \"minimum\":
-                \"\",\n      \"parent\": \"S1\",\n      \"position\": 2,\n     
-                \"ppiResultField\": \"\",\n      \"previousVersion\":
-                \"\",\n      \"printAnswer\": false,\n      \"remoteId\":
-                \"\",\n      \"remoteLibrary\": \"\",\n      \"remoteServerId\":
-                \"\",\n      \"repeatSourceValue\": \"\",\n     
-                \"repeatTimes\": \"\",\n      \"required\": true,\n     
-                \"responseValidation\": \"\",\n     
-                \"showAllQuestionOnOnePage\": false,\n     
-                \"skipLogicBehavior\": \"Show\",\n      \"skipLogicOperator\":
-                \"All\",\n      \"hint\": \"\",\n      \"testDynamicOperation\":
-                false,\n      \"type\": \"radio\",\n     
-                \"useCurrentTimeAsDefault\": false,\n      \"changeLogNumber\":
-                \"0\"\n    }\n  ]\n}"
+              $ref: "#/components/schemas/QuestionRecords"
       parameters:
         - name: Authorization
           in: header
@@ -319,7 +184,9 @@ paths:
         '200':
           description: Successful response
           content:
-            application/json: {}
+            application/json: 
+               schema:
+                  $ref: "#/components/schemas/ResponseArray" 
     get:
       tags:
         - default
@@ -359,6 +226,33 @@ paths:
         '200':
           description: Successful response
           content:
+            application/json: 
+               schema:
+                  $ref: "#/components/schemas/QuestionSearch" 
+    delete:
+      tags:
+        - default
+      summary: Question - Delete
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: OAuth {{access_token}}
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: query
+          schema:
+            type: string
+          example: '{{current_question_id}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
             application/json: {}
   /services/apexrest/formmappingdata/v1:
     get:
@@ -390,49 +284,18 @@ paths:
         '200':
           description: Successful response
           content:
-            application/json: {}
+            application/json: 
+               schema:
+                  $ref: "#/components/schemas/ResponseArray" 
     put:
       tags:
         - default
       summary: Form/Field Mapping - Insert New Form Mapping and Field Mapping
       requestBody:
         content:
-          '*/*':
+          application/json:
             schema:
-              type: string
-              example: >-
-                "{\r\n    \"records\": [\r\n        {\r\n\t\t\t\"externalId\" :
-                \"123\",\r\n            \"id\": \"\",\r\n            \"name\":
-                \"Created from API\",\r\n            \"form\":
-                \"a0hDn000000gLXeIAM\",\r\n            \"formVersion\":
-                \"a0gDn000000kXUeIAM\",\r\n           
-                \"formVersionMappingField\": \"\",\r\n           
-                \"mobileUserField\": \"\",\r\n           
-                \"patScoreMappingField\": \"\",\r\n           
-                \"objectApiName\": \"Account\",\r\n           
-                \"formMappingField\": \"\",\r\n           
-                \"intervieweeMapField\": \"\",\r\n            \"isReference\":
-                false,\r\n            \"matchingField\": \"\",\r\n           
-                \"repeat\": \"a0SDn000000oknFMAQ\",\r\n           
-                \"useAsInterviewee\": false,\r\n           
-                \"submissionAPIField\": \"\",\r\n           
-                \"changeLogNumber\": \"12\",\r\n           
-                \"questionMappings\": [\r\n                {\r\n\"externalId\" :
-                \"213\",\r\n                    \"name\":
-                \"a0RDn000000y2Rs\",\r\n                    \"id\":
-                \"\",\r\n                    \"fieldAPIName\":
-                \"Name\",\r\n                    \"isBroken\":
-                false,\r\n                    \"question\":
-                \"a0SDn000000oknBMAQ\",\r\n                    \"scoringGroup\":
-                \"\"\r\n                },\r\n               
-                {\r\n\"externalId\" : \"321\",\r\n                    \"name\":
-                \"a0RDn000000y2Rt\",\r\n                    \"id\":
-                \"\",\r\n                    \"fieldAPIName\":
-                \"Description\",\r\n                    \"isBroken\":
-                false,\r\n                    \"question\":
-                \"a0SDn000000oknGMAQ\",\r\n                    \"scoringGroup\":
-                \"\"\r\n                }\r\n            ]\r\n        }\r\n   
-                ]\r\n}"
+              $ref: "#/components/schemas/FormMappingRecords" 
       parameters:
         - name: Authorization
           in: header
@@ -453,6 +316,33 @@ paths:
         '200':
           description: Successful response
           content:
+            application/json: 
+               schema:
+                  $ref: "#/components/schemas/FormMappingSearch" 
+    delete:
+      tags:
+        - default
+      summary: Form Mapping - Delete
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: OAuth {{access_token}}
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: query
+          schema:
+            type: string
+          example: '{{current_form_mapping_id}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
             application/json: {}
   /services/apexrest/skiplogicdata/v1/:
     put:
@@ -461,20 +351,9 @@ paths:
       summary: Skip Logic - create/update SkipLogic
       requestBody:
         content:
-          '*/*':
+          application/json:
             schema:
-              type: string
-              example: >-
-                "{\r\n\r\n    \"records\": [\r\n         {\r\n           
-                \"externalId\":\"1235\",\r\n            \"id\":
-                \"a0ZDn000000gw6kMAA\",\r\n            \"negate\":
-                false,\r\n            \"skipValue\": \"\",\r\n           
-                \"condition\": \"Answered\",\r\n            \"parentQuestion\":
-                \"a0SDn000000oknCMAQ\",\r\n            \"sourceQuestion\":
-                \"a0SDn000000oknBMAQ\",\r\n            \"form\":
-                \"a0hDn000000gLXeIAM\",\r\n            \"formVersion\":
-                \"a0gDn000000kXUeIAM\",\r\n            \"changeLogNumber\":
-                \"17\"\r\n        }\r\n    ]\r\n}   "
+              $ref: "#/components/schemas/SkipLogicRecords"
       parameters:
         - name: Authorization
           in: header
@@ -495,7 +374,9 @@ paths:
         '200':
           description: Successful response
           content:
-            application/json: {}
+            application/json: 
+               schema:
+                  $ref: "#/components/schemas/ResponseArray" 
     get:
       tags:
         - default
@@ -520,4 +401,679 @@ paths:
         '200':
           description: Successful response
           content:
+            application/json: 
+               schema:
+                  $ref: "#/components/schemas/SkipLogicSearch" 
+    delete:
+      tags:
+        - default
+      summary: Skip Logic - Delete
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: OAuth {{access_token}}
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: query
+          schema:
+            type: string
+          example: '{{current_skip_logic_id}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
             application/json: {}
+  /services/apexrest/objectrelationshipmappingdata/v1:
+    put:
+      tags:
+        - default
+      summary: ORM - insert
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ObjectRelationshipMappingRecords"
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: OAuth {{access_token}}
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: objectType
+          in: query
+          schema:
+            type: string
+          example: PutObjectRelationshipMappingData
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: 
+               schema:
+                  $ref: "#/components/schemas/ResponseArray" 
+    get:
+      tags:
+        - default
+      summary: ORM - get by Id
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: OAuth {{access_token}}
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: objectType
+          in: query
+          schema:
+            type: string
+          example: GetObjectRelationshipMappingData
+        - name: id
+          in: query
+          schema:
+            type: string
+          example: '{{current_orm}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: 
+               schema:
+                  $ref: "#/components/schemas/ObjectRelationshipMappingSearch" 
+    delete:
+      tags:
+        - default
+      summary: ORM - delete
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: OAuth {{access_token}}
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: query
+          schema:
+            type: string
+          example: '{{current_orm}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+components:
+  securitySchemes:
+    noauthAuth:
+      type: http
+      scheme: noauth
+  schemas:
+    FormRecords:
+      properties:
+        records:
+          type: array
+          items:
+            $ref: "#/components/schemas/Form"
+    QuestionRecords:
+      properties:
+        records:
+          type: array
+          items:
+            $ref: "#/components/schemas/Question"
+    SkipLogicRecords:
+      properties:
+        records:
+          type: array
+          items:
+            $ref: "#/components/schemas/SkipLogic"
+    FormMappingRecords:
+      properties:
+        records:
+          type: array
+          items:
+            $ref: "#/components/schemas/FormMapping" 
+    ObjectRelationshipMappingRecords:
+      properties:
+        records:
+          type: array
+          items:
+            $ref: "#/components/schemas/ObjectRelationshipMapping"
+    FormSearch:
+      properties:
+        filteredCount:
+          type: integer
+          example: 1
+          description: Number of records found matching the search criteria. 
+        unfilteredCount:
+          type: integer
+          example: 100
+          description: Total number of records in SalesForce for this object, include those that don't match the search criteria. Used for paging.
+        records:
+          type: array
+          items:
+            $ref: "#/components/schemas/Form"
+    QuestionSearch:
+      properties:
+        filteredCount:
+          type: integer
+          example: 1
+          description: Number of records found matching the search criteria. 
+        unfilteredCount:
+          type: integer
+          example: 100
+          description: Total number of records in SalesForce for this object, include those that don't match the search criteria. Used for paging.
+        records:
+          type: array
+          items:
+            $ref: "#/components/schemas/Question"
+    SkipLogicSearch:
+      properties:
+        filteredCount:
+          type: integer
+          example: 1
+          description: Number of records found matching the search criteria. 
+        unfilteredCount:
+          type: integer
+          example: 100
+          description: Total number of records in SalesForce for this object, include those that don't match the search criteria. Used for paging.
+        records:
+          type: array
+          items:
+            $ref: "#/components/schemas/SkipLogic"
+    FormMappingSearch:
+      properties:
+        filteredCount:
+          type: integer
+          example: 1
+          description: Number of records found matching the search criteria. 
+        unfilteredCount:
+          type: integer
+          example: 100
+          description: Total number of records in SalesForce for this object, include those that don't match the search criteria. Used for paging.
+        records:
+          type: array
+          items:
+            $ref: "#/components/schemas/FormMapping" 
+    ObjectRelationshipMappingSearch:
+      properties:
+        filteredCount:
+          type: integer
+          example: 1
+          description: Number of records found matching the search criteria. 
+        unfilteredCount:
+          type: integer
+          example: 100
+          description: Total number of records in SalesForce for this object, include those that don't match the search criteria. Used for paging.
+        records:
+          type: array
+          items:
+            $ref: "#/components/schemas/ObjectRelationshipMapping"
+    Form: 
+      properties:
+        externalId: 
+          type: string
+          example: '{{formtimestamp}}'
+          description: UniqueID from the external system.
+        id: 
+          type: string
+          example: "a0hDH0000069hqHYAQ"
+          description: Salesforce-generated ID. Leave blank to create new, pass in the salesforce ID to update.
+        name: 
+          type: string
+          example: demo {{formtimestamp}}
+          description: user-visible form name
+        alias: 
+          type: string
+          example: demo {{formtimestamp}}
+          description: TODO
+        messageAfterSubmission: 
+          type: string
+          example: Thank you for taking the time to complete this form!
+          description: User-visible message on form completion
+        description: 
+          type: string
+          example: This form was inserted through API on {{$timestamp}}
+          description: admin-visible form description
+        status: 
+          type: string
+          example: "Draft"
+          description: Must be Draft or Updating TODO
+          enum: [
+                  Draft, 
+                  Updating, 
+                  Published,
+                  Closed
+                ]
+        formVersion:
+          type: array
+          items:
+            $ref: "#/components/schemas/FormVersion"
+    FormVersion:
+      properties:
+            versionid: 
+              type: string
+              description: SalesForce-generated VersionID of the form. This gets changed when you change the form state (like pressing "Publish" on a Draft Form)
+              example: "a0hDH0000069hqHYAQ"
+            changeLogNumber: 
+              type: string
+              example: "10"
+              description: TaroWorks-generated Change Log Number. Increments on every form change (adding questions, sections, form mapping, etc.)
+    Question:
+      properties:
+          externalId: 
+            type: string
+            description: UniqueID from the external system.
+            example: '{{formtimestamp}}S1'
+          id: 
+            type: string
+            description: Salesforce-generated ID. Leave blank to create new, pass in the salesforce ID to update.
+            example: ""
+          name: 
+            type: string
+            description: Name of the Question, used for internal references to this question.
+            example: main family member
+          canbeDownloadedInTheEditForm: 
+            type: boolean
+            description: TODO
+            example: false
+          caption: 
+            type: string
+            description: Name of the Question, visible to the App User.
+            example: Main Family Member
+          cascadingLevel: 
+            type: string
+            description: Used for cascading select questions - if this is a cascading select, use this to show the level in the cascading hierarcy.
+            example: ""
+          options: 
+            type: string
+            description: Used for picklist. TODO
+            example: []
+          cascadingSelect: 
+            type: string
+            description: TODO
+            example: ""
+          controllingQuestion: 
+            type: string
+            description: TODO
+            example: ""
+          displayRepeatSectionInTable: 
+            type: boolean
+            description: If this question is a repeat section, whether the repeat section is a table or not.  
+            example: false
+          doAfter: 
+            type: string
+            description: TODO
+            example: ""
+          doBefore: 
+            type: string
+            description: TODO
+            example: ""
+          dynamicOperationType: 
+            type: string
+            description: Calculation or Validation dynamic operation
+            example: ""
+          exampleOfValidResponse: 
+            type: string
+            description: TODO
+            example: ""
+          firstVersion: 
+            type: integer
+            description: Indicates which version of the form this question first showed up in.
+            example: 1
+          form: 
+            type: string
+            description: Which form this question is part of.
+            example: '{{new_form_id}}'
+          formVersion: 
+            type: string
+            description: Which form version this question is part of.
+            example: '{{current_form_versionid}}'
+          hidden: 
+            type: boolean
+            description: Whether to display the question to the app user or not.
+            example: false
+          lastVersion: 
+            type: integer
+            description: BE CAREFUL WITH THIS FIELD. Last version of the form this question should appear on.
+            example: 1
+          maximum: 
+            type: string
+            description: TODO
+            example: ""
+          maxInstance: 
+            type: string
+            description: TODO
+            example: 0
+          minimum: 
+            type: string
+            description: TODO
+            example: ""
+          parent: 
+            type: string
+            description: Sections are parent questions. If a question has a parent, then it sits inside that section; if a question has no parent, then that question is a section.
+            example: ""
+          position: 
+            type: integer
+            description: Position of a question inside a section
+            example: 1
+          ppiResultField: 
+            type: string
+            description: DEPRECATED - TODO
+            example: ""
+          previousVersion: 
+            type: string
+            description: TODO
+            example: ""
+          printAnswer: 
+            type: boolean
+            description: TODO
+            example: false
+          remoteId: 
+            type: string
+            description: DEPRECATED - TODO
+            example: ""
+          remoteLibrary: 
+            type: string
+            description: DEPRECATED - TODO
+            example: ""
+          remoteServerId: 
+            type: string
+            description: DEPRECATED - TODO
+            example: ""
+          repeatSourceValue: 
+            type: string
+            description: Used for repeat section mapping - the controlling question sets the number of times that a repeat question is repeated.
+            example: ""
+          repeatTimes: 
+            type: string
+            description: Number of times to repeat
+            example: ""
+          required: 
+            type: boolean
+            description: Whether the question is required (app will not proceed without a value filled in for this question)
+            example: true
+          responseValidation: 
+            type: string
+            description: t
+            example: ""
+          showAllQuestionOnOnePage: 
+            type: string
+            description: t
+            example: false
+          skipLogicBehavior: 
+            type: string
+            description: t
+            example: Show
+          skipLogicOperator: 
+            type: string
+            description: t
+            example: All
+          hint: 
+            type: string
+            description: t
+            example: ""
+          testDynamicOperation: 
+            type: string
+            description: t
+            example: false
+          type: 
+            type: string
+            description: Type of the question. Allowed values are
+            enum: ['section',
+                    'text-short',
+                    'text-long',
+                    'number',
+                    'number-integer',
+                    'number-decimal',
+                    'date-date',
+                    'date-datetime',
+                    'barcode',
+                    'radio',
+                    'checkbox',
+                    'static-content',
+                    'end_of_survey',
+                    'picture',
+                    'capture-audio',
+                    'capture-video',
+                    'signature',
+                    'cascading-level',
+                    'gps-location',
+                    'section'
+                    ]
+            example: section
+          useCurrentTimeAsDefault: 
+            type: string
+            description: TODO
+            example: false
+          changeLogNumber: 
+            type: string
+            description: TaroWorks-generated Change Log Number. Increments on every form change (adding questions, sections, form mapping, etc.)
+            example: '{{current_form_change_log_number}}' 
+    SkipLogic:
+      properties:
+        externalId: 
+          type: string
+          description: UniqueID from the external system. 
+          example: '{{formtimestamp}}123467'
+        form: 
+          type: string
+          description: Which form this skip logic is part of.
+          example: '{{new_form_id}}'
+        formVersion: 
+          type: string
+          description: Which form version this skip logic is part of.
+          example: '{{current_form_versionid}}'
+        changeLogNumber: 
+          type: string
+          description: TaroWorks-generated Change Log Number. Increments on every form change (adding questions, sections, form mapping, etc.)
+          example: '{{current_form_change_log_number}}'
+        id: 
+          type: string
+          description: Salesforce-generated ID. Leave blank to create new, pass in the salesforce ID to update.
+          example: ""
+        parentQuestion: 
+          type: string
+          description: The question that should be skipped based on this skip logic.
+          example: '{{current_occupation_question_id}}'
+        sourceQuestion: 
+          type: string
+          description: The question that is used to determine if the parent question should be skipped.
+          example: '{{current_integer_question_id}}'
+        negate: 
+          type: string
+          description: Whether the condition is negated 
+          example: "false"
+        condition: 
+          type: string
+          description: Allowable conditions for the skip logic to be fired. TODO.
+          example: Answered
+          enum: ["Is","Answered"]
+        skipValue:
+          type: string
+          description: Explicit value to use with "Is" condition
+          example: "testing"
+    FormMapping:
+      properties:
+        externalId: 
+          type: string
+          description: UniqueID from the external system.
+          example: '{{formtimestamp}}FM1'
+        id: 
+          type: string
+          description: Salesforce-generated ID. Leave blank to create new, pass in the salesforce ID to update.f
+          example: ""
+        name: 
+          type: string
+          description: Salesforce-internal name, not seen by app users or admins.
+          example: new name
+        form: 
+          type: string
+          description: Which form this Form Mapping is part of.
+          example: '{{new_form_id}}'
+        formVersion: 
+          type: string
+          description: Which form version this form mapping is part of.
+          example: '{{current_form_versionid}}'
+        formVersionMappingField: 
+          type: string
+          description: TODO
+          example: ""
+        mobileUserField: 
+          type: string
+          description: TODO
+          example: Name
+        patScoreMappingField: 
+          type: string
+          description: DEPRECATED - TODO
+          example: ""
+        objectApiName: 
+          type: string
+          description: Which Object to use for the form mapping, specified by API Name
+          example: Account
+        formMappingField: 
+          type: string
+          description: TODO
+          example: ""
+        intervieweeMapField: 
+          type: string
+          description: DEPRECATED - TODO
+          example: ""
+        IsReference: 
+          type: boolean
+          description: Whether the form mapping is a reference object or not.
+          example: false
+        matching: 
+          type: string
+          description: TODO
+          example: ""
+        repeat: 
+          type: string
+          description: Which repeat section "id" field to use for this form mapping repeat.
+          example: ""
+        useAsInterviewee: 
+          type: boolean
+          description: DEPRECATED - TODO
+          example: false
+        submissionAPIField: 
+          type: string
+          description: TODO
+          example: ""
+        changeLogNumber: 
+          type: string
+          description: TaroWorks-generated Change Log Number. Increments on every form change (adding questions, sections, form mapping, etc.)
+          example: '{{current_form_change_log_number}}'
+        questionMappings:
+          type: array
+          items:
+            $ref: "#/components/schemas/QuestionMapping" 
+    QuestionMapping:
+      properties:
+        externalId: 
+          type: string
+          description: UniqueID from the external system.
+          example: '{{formtimestamp}}2'
+        name: 
+          type: string
+          description: Salesforce-internal name, not seen by app users or admins.
+          example: age_becomes_account_number
+        id: 
+          type: string
+          description: Salesforce-generated ID. Leave blank to create new, pass in the salesforce ID to update.f
+          example: ""
+        scoringGroup: 
+          type: string
+          description: TODO
+          example: ""
+        question: 
+          type: string
+          description: Question "id" field to use for the question mapping
+          example: '{{current_integer_question_id}}'
+        isBroken: 
+          type: string
+          description: TODO
+          example: true
+        fieldAPIName: 
+          type: string
+          description: API Name of the SalesForce object to use for mapping the question.
+          example: AccountNumber
+    ObjectRelationshipMapping:
+      properties:
+        externalId: 
+          type: string
+          description: UniqueID from the external system.
+          example: '{{formtimestamp}}123-orm'
+        id: 
+          type: string
+          description: Salesforce-generated ID. Leave blank to create new, pass in the salesforce ID to update.f
+          example: ""
+        name: 
+          type: string
+          description: Salesforce-internal name, not seen by app users or admins.
+          example: inserted
+        fieldApiName: 
+          type: string
+          description: Which field in the parent object to relate to the child object.
+          example: AccountId
+        parentSurveyMapping: 
+          type: string
+          description: id field of the form mapping to use for the parent object
+          example: '{{current_form_mapping_id}}'
+        childSurveyMapping: 
+          type: string
+          description: id field of the form mapping to use for the child object
+          example: '{{current_repeat_form_mapping_id}}'
+        formVersion: 
+          type: string
+          description: Which form version this ORM related to.
+          example: '{{current_form_versionid}}'
+        changeLogNumber: 
+          type: string
+          description: TaroWorks-generated Change Log Number. Increments on every form change (adding questions, sections, form mapping, etc.)
+          example: '{{current_form_change_log_number}}'
+    Response:
+      properties:
+        success:
+          type: boolean
+          description: Whether this object was created successfully
+          example: true
+        recordId:
+          type: string
+          description: SalesForce ID of the created object
+          example: a0hDn000000jsRSIAY
+        message:
+          type: string
+          description: Success or failure message
+          example: "Form Created Successfully"
+        externalId:
+          type: string
+          description: External ID of the created object
+          example: 20221219113625
+        error:
+          type: boolean
+          description: TODO (why do both this and "success" exist?)
+          example: false
+        changeLogNumber:
+          type: integer 
+          description: TaroWorks-generated Change Log Number. Increments on every form change (adding questions, sections, form mapping, etc.)
+          example: 1 
+    ResponseArray:
+        type: array
+        items: 
+          $ref: "#/components/schemas/Response"
