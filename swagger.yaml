@@ -689,10 +689,6 @@ components:
             type: string
             description: Name of the Question, used for internal references to this question.
             example: main family member
-          canbeDownloadedInTheEditForm: 
-            type: boolean
-            description: DEPRECATED - TODO
-            example: false
           caption: 
             type: string
             description: Name of the Question, visible to the App User.
@@ -717,14 +713,6 @@ components:
             type: boolean
             description: If this question is a repeat section, whether the repeat section is a table or not.  
             example: false
-          doAfter: 
-            type: string
-            description: DEPRECATED - TODO
-            example: ""
-          doBefore: 
-            type: string
-            description: DEPRECATED - TODO
-            example: ""
           dynamicOperationType: 
             type: string
             description: Calculation or Validation dynamic operation
@@ -733,10 +721,6 @@ components:
             type: string
             description: Holds example of valid regular expression entered in response validation
             example: ""
-          firstVersion: 
-            type: integer
-            description: Indicates which version of the form this question first showed up in.
-            example: 1
           form: 
             type: string
             description: Which form this question is part of.
@@ -749,18 +733,10 @@ components:
             type: boolean
             description: Whether to display the question to the app user or not.
             example: false
-          lastVersion: 
-            type: integer
-            description: BE CAREFUL WITH THIS FIELD. Last version of the form this question should appear on.
-            example: 1
           maximum: 
             type: string
             description: For Number questions - the maximum allowed value
             example: ""
-          maxInstance: 
-            type: string
-            description: TODO - RESEARCH used for Max Instance Scoring, internal variable
-            example: 0
           minimum: 
             type: string
             description: For Number questions - the minimum allowed value
@@ -773,10 +749,6 @@ components:
             type: integer
             description: Position of a question inside a section
             example: 1
-          ppiResultField: 
-            type: string
-            description: DEPRECATED - TODO
-            example: ""
           previousVersion: 
             type: string
             description: The previous form version for this question.
@@ -785,18 +757,6 @@ components:
             type: boolean
             description: Print answer(s) to mobile users
             example: false
-          remoteId: 
-            type: string
-            description: DEPRECATED - TODO
-            example: ""
-          remoteLibrary: 
-            type: string
-            description: DEPRECATED - TODO
-            example: ""
-          remoteServerId: 
-            type: string
-            description: DEPRECATED - TODO
-            example: ""
           repeatSourceValue: 
             type: string
             description: Used for repeat section mapping - the controlling question sets the number of times that a repeat question is repeated.
@@ -941,10 +901,6 @@ components:
           type: string
           description: Api Field Name of the mapped object to save the Mobile User data
           example: Name
-        patScoreMappingField: 
-          type: string
-          description: DEPRECATED - TODO
-          example: ""
         objectApiName: 
           type: string
           description: Which Object to use for the form mapping, specified by API Name
@@ -953,26 +909,18 @@ components:
           type: string
           description: Api Field Name of the mapped object to save the Form data
           example: ""
-        intervieweeMapField: 
-          type: string
-          description: DEPRECATED - TODO
-          example: ""
         IsReference: 
           type: boolean
           description: Whether the form mapping is a reference object or not.
           example: false
         matching: 
           type: string
-          description: DEPRECATED - TODO
+          description: This field is used to prevent duplicate record creation when users sync data from mobile.  
           example: ""
         repeat: 
           type: string
           description: Which repeat section "id" field to use for this form mapping repeat.
           example: ""
-        useAsInterviewee: 
-          type: boolean
-          description: DEPRECATED - TODO
-          example: false
         submissionAPIField: 
           type: string
           description: Api Field Name of the mapped object to save the Submission
@@ -1007,10 +955,6 @@ components:
           type: string
           description: Question "id" field to use for the question mapping
           example: '{{current_integer_question_id}}'
-        isBroken: 
-          type: string
-          description: TODO - RESEARCH
-          example: true
         fieldAPIName: 
           type: string
           description: API Name of the SalesForce object to use for mapping the question.
@@ -1067,10 +1011,6 @@ components:
           type: string
           description: External ID of the created object
           example: 20221219113625
-        error:
-          type: boolean
-          description: TODO - Remove this soon
-          example: false
         changeLogNumber:
           type: integer 
           description: TaroWorks-generated Change Log Number. Increments on every form change (adding questions, sections, form mapping, etc.)
