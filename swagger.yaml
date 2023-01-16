@@ -19,10 +19,6 @@ paths:
       security:
         - noauthAuth: []
       parameters:
-        - name: ''
-          in: header
-          schema:
-            type: string
         - name: grant_type
           in: query
           schema:
