@@ -11,7 +11,11 @@ paths:
         - default
       summary: Login - get access token
       requestBody:
-        content: {}
+        content:
+          application/json:
+            schema:
+              type: object
+              nullable: true
       security:
         - noauthAuth: []
       parameters:
