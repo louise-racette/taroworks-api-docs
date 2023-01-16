@@ -7,6 +7,7 @@ servers:
 paths:
   /services/oauth2/token:
     post:
+      operationId: login
       tags:
         - default
       summary: Login - get access token
@@ -51,6 +52,7 @@ paths:
             application/json: {}
   /services/apexrest/formdata/v1:
     put:
+      operationId: upsertForms
       tags:
         - default
       summary: Form - upsert one or multiple forms
@@ -84,6 +86,7 @@ paths:
                schema:
                   $ref: "#/components/schemas/ResponseArray" 
     get:
+      operationId: getForms
       tags:
         - default
       summary: Form - get by limit and offset, name, or ID
@@ -130,6 +133,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/FormSearch"
     delete:
+      operationId: deleteForm
       tags:
         - default
       summary: Form - Delete
@@ -156,6 +160,7 @@ paths:
             application/json: {}
   /services/apexrest/questiondata/v1:
     put:
+      operationId: upsertQuestions
       tags:
         - default
       summary: Question - create one or more questions
@@ -188,6 +193,7 @@ paths:
                schema:
                   $ref: "#/components/schemas/ResponseArray" 
     get:
+      operationId: getQuestions
       tags:
         - default
       summary: Question - get by limit and offset, name, or ID
@@ -230,6 +236,7 @@ paths:
                schema:
                   $ref: "#/components/schemas/QuestionSearch" 
     delete:
+      operationId: deleteQuestion
       tags:
         - default
       summary: Question - Delete
@@ -256,6 +263,7 @@ paths:
             application/json: {}
   /services/apexrest/formmappingdata/v1:
     get:
+      operationId: getFormMapping
       tags:
         - default
       summary: Form/Field Mapping - Get by formId
@@ -288,6 +296,7 @@ paths:
                schema:
                   $ref: "#/components/schemas/ResponseArray" 
     put:
+      operationId: upsertFormMapping
       tags:
         - default
       summary: Form/Field Mapping - Insert New Form Mapping and Field Mapping
@@ -320,6 +329,7 @@ paths:
                schema:
                   $ref: "#/components/schemas/FormMappingSearch" 
     delete:
+      operationId: deleteFormMapping
       tags:
         - default
       summary: Form Mapping - Delete
@@ -346,6 +356,7 @@ paths:
             application/json: {}
   /services/apexrest/skiplogicdata/v1/:
     put:
+      operationId: upsertSkipLogic
       tags:
         - default
       summary: Skip Logic - create/update SkipLogic
@@ -378,6 +389,7 @@ paths:
                schema:
                   $ref: "#/components/schemas/ResponseArray" 
     get:
+      operationId: getSkipLogics
       tags:
         - default
       summary: Skip Logic - Get by Limit and Offset
@@ -405,6 +417,7 @@ paths:
                schema:
                   $ref: "#/components/schemas/SkipLogicSearch" 
     delete:
+      operationId: deleteSkipLogic
       tags:
         - default
       summary: Skip Logic - Delete
@@ -431,6 +444,7 @@ paths:
             application/json: {}
   /services/apexrest/objectrelationshipmappingdata/v1:
     put:
+      operationId: upsertObjectMapping
       tags:
         - default
       summary: ORM - insert
@@ -463,6 +477,7 @@ paths:
                schema:
                   $ref: "#/components/schemas/ResponseArray" 
     get:
+      operationId: getObjectMapping
       tags:
         - default
       summary: ORM - get by Id
@@ -495,6 +510,7 @@ paths:
                schema:
                   $ref: "#/components/schemas/ObjectRelationshipMappingSearch" 
     delete:
+      operationId: deleteObjectMapping
       tags:
         - default
       summary: ORM - delete
