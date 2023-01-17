@@ -1070,15 +1070,15 @@ components:
         id:
           type: string
           example: "https://login.salesforce.com/id/123/abc"
-          description:
+          description: Your login ID
         token_type:
           type: string
           example: "Bearer"
-          description: The Salesforce instance you're authorized against
+          description: Type of Token
         issued_at:
           type: string
           example: "1673911057864"
-          description: The Salesforce instance you're authorized against
+          description: Timestamp of token issue
         signature:
           type: string
           example: "3PiFUIioqKkHpHxUiCCDzpvSiM2F6//w2/CslNTuf+o="
