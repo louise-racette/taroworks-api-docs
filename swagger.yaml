@@ -818,8 +818,7 @@ components:
                     'capture-video',
                     'signature',
                     'cascading-level',
-                    'gps-location',
-                    'section'
+                    'gps-location'
                     ]
             example: section
           useCurrentTimeAsDefault: 
