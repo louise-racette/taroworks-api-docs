@@ -12,14 +12,14 @@ paths:
         - default
       summary: Login - get access token
       requestBody:
-        content: {}
+        content:
+          application/json:
+            schema:
+              type: object
+              nullable: true
       security:
         - noauthAuth: []
       parameters:
-        - name: ''
-          in: header
-          schema:
-            type: string
         - name: grant_type
           in: query
           schema:
@@ -49,7 +49,9 @@ paths:
         '200':
           description: Successful response
           content:
-            application/json: {}
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Credentials"
   /services/apexrest/formdata/v1:
     put:
       operationId: upsertForms
@@ -832,8 +834,7 @@ components:
                     'capture-video',
                     'signature',
                     'cascading-level',
-                    'gps-location',
-                    'section'
+                    'gps-location'
                     ]
             example: section
           useCurrentTimeAsDefault: 
@@ -1057,3 +1058,35 @@ components:
           type: string
           description: Value displayed to app user
           example: Female
+    Credentials:
+      properties:
+        access_token:
+          type: string
+          description: An access token to include with future requests
+        instance_url:
+          type: string
+          example: "http://instance.develop.my.salesforce.com"
+          description: The Salesforce instance you're authorized against
+        id:
+          type: string
+          example: "https://login.salesforce.com/id/123/abc"
+          description:
+        token_type:
+          type: string
+          example: "Bearer"
+          description: The Salesforce instance you're authorized against
+        issued_at:
+          type: string
+          example: "1673911057864"
+          description: The Salesforce instance you're authorized against
+        signature:
+          type: string
+          example: "3PiFUIioqKkHpHxUiCCDzpvSiM2F6//w2/CslNTuf+o="
+          description: Response signature for verification
+      required:
+        - access_token
+        - instance_url
+        - id
+        - token_type
+        - issued_at
+        - signature
