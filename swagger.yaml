@@ -155,6 +155,7 @@ paths:
           schema:
             type: string
           example: '{{current_form_id}}'
+          required: true
       responses:
         '200':
           description: Successful response
@@ -258,6 +259,7 @@ paths:
           schema:
             type: string
           example: '{{current_question_id}}'
+          required: true
       responses:
         '200':
           description: Successful response
@@ -351,6 +353,7 @@ paths:
           schema:
             type: string
           example: '{{current_form_mapping_id}}'
+          required: true
       responses:
         '200':
           description: Successful response
@@ -439,6 +442,7 @@ paths:
           schema:
             type: string
           example: '{{current_skip_logic_id}}'
+          required: true
       responses:
         '200':
           description: Successful response
@@ -532,6 +536,7 @@ paths:
           schema:
             type: string
           example: '{{current_orm}}'
+          required: true
       responses:
         '200':
           description: Successful response
