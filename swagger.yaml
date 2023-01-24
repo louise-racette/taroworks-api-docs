@@ -290,6 +290,16 @@ paths:
           schema:
             type: string
           example: a0hDn000000gLXeIAM
+        - name: formVersionId
+          in: query
+          schema:
+            type: string
+          example: a0h4w00000QwnWTAAZ
+        - name: id
+          in: query
+          schema:
+            type: string
+          example: a0h4w00000QwnWTAAZ
       responses:
         '200':
           description: Successful response
