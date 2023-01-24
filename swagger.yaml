@@ -327,9 +327,9 @@ paths:
         '200':
           description: Successful response
           content:
-            application/json: 
-               schema:
-                  $ref: "#/components/schemas/FormMappingSearch" 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseArray"
     delete:
       operationId: deleteFormMapping
       tags:
