@@ -294,9 +294,9 @@ paths:
         '200':
           description: Successful response
           content:
-            application/json: 
-               schema:
-                  $ref: "#/components/schemas/ResponseArray" 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FormMappingSearch"
     put:
       operationId: upsertFormMapping
       tags:
