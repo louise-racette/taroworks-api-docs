@@ -300,6 +300,16 @@ paths:
           schema:
             type: string
           example: a0h4w00000QwnWTAAZ
+        - name: offset
+          in: query
+          schema:
+            type: integer
+          example: "0"
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          example: "10"
       responses:
         '200':
           description: Successful response
