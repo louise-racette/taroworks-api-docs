@@ -1001,15 +1001,7 @@ components:
           type: string
           description: Api Field Name of the mapped object to save the Form data
           example: ""
-        IsReference: 
-          type: boolean
-          description: Whether the form mapping is a reference object or not.
-          example: false
-        matching: 
-          type: string
-          description: This field is used to prevent duplicate record creation when users sync data from mobile.  
-          example: ""
-        repeat: 
+        repeat:
           type: string
           description: Which repeat section "id" field to use for this form mapping repeat.
           example: ""
@@ -1024,7 +1016,15 @@ components:
         questionMappings:
           type: array
           items:
-            $ref: "#/components/schemas/QuestionMapping" 
+            $ref: "#/components/schemas/QuestionMapping"
+        isReference:
+          type: boolean
+          description: Whether the form mapping is a reference object or not.
+          example: false
+        matchingField:
+          type: string
+          description: This field is used to prevent duplicate record creation when users sync data from mobile.
+          example: ""
     QuestionMapping:
       properties:
         externalId: 
