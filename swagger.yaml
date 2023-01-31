@@ -752,13 +752,13 @@ components:
             description: Whether to display the question to the app user or not.
             example: false
           maximum: 
-            type: string
+            type: number 
             description: For Number questions - the maximum allowed value
-            example: ""
+            example: 0
           minimum: 
-            type: string
+            type: number
             description: For Number questions - the minimum allowed value
-            example: ""
+            example: 10
           parent: 
             type: string
             description: Sections are parent questions. If a question has a parent, then it sits inside that section; if a question has no parent, then that question is a section.
@@ -912,7 +912,7 @@ components:
           example: '{{current_form_versionid}}'
         formVersionMappingField: 
           type: string
-          description: Api Field Name of the mapped object to save the Form Version dat
+          description: Api Field Name of the mapped object to save the Form Version data
           example: ""
         mobileUserField: 
           type: string
