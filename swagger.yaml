@@ -587,6 +587,10 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Form"
+      required:
+        - filteredCount
+        - unfilteredCount
+        - records
     QuestionSearch:
       properties:
         filteredCount:
@@ -601,6 +605,10 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Question"
+      required:
+        - filteredCount
+        - unfilteredCount
+        - records
     SkipLogicSearch:
       properties:
         filteredCount:
@@ -615,6 +623,10 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/SkipLogic"
+      required:
+        - filteredCount
+        - unfilteredCount
+        - records
     FormMappingSearch:
       properties:
         filteredCount:
@@ -628,7 +640,11 @@ components:
         records:
           type: array
           items:
-            $ref: "#/components/schemas/FormMapping" 
+            $ref: "#/components/schemas/FormMapping"
+      required:
+        - filteredCount
+        - unfilteredCount
+        - records
     ObjectRelationshipMappingSearch:
       properties:
         filteredCount:
@@ -643,7 +659,11 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/ObjectRelationshipMapping"
-    Form: 
+      required:
+        - filteredCount
+        - unfilteredCount
+        - records
+    Form:
       properties:
         externalId: 
           type: string
