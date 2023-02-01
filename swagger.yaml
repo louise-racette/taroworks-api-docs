@@ -107,6 +107,7 @@ paths:
           in: query
           schema:
             type: string
+          required: true
           example: GetFormData
         - name: startNumber
           in: query
@@ -186,6 +187,7 @@ paths:
           in: query
           schema:
             type: string
+          required: true
           example: PutQuestionData
       responses:
         '200':
@@ -214,6 +216,7 @@ paths:
           in: query
           schema:
             type: string
+          required: true
           example: GetQuestionData
         - name: startNumber
           in: query
@@ -284,6 +287,7 @@ paths:
           in: query
           schema:
             type: string
+          required: true
           example: GetFormMappingData
         - name: formId
           in: query
@@ -322,6 +326,7 @@ paths:
           in: query
           schema:
             type: string
+          required: true
           example: PutFormMappingData
       responses:
         '200':
@@ -382,6 +387,7 @@ paths:
           in: query
           schema:
             type: string
+          required: true
           example: PutSkipLogicData
       responses:
         '200':
@@ -410,6 +416,7 @@ paths:
           in: query
           schema:
             type: string
+          required: true
           example: GetSkipLogicData
       responses:
         '200':
@@ -470,6 +477,7 @@ paths:
           in: query
           schema:
             type: string
+          required: true
           example: PutObjectRelationshipMappingData
       responses:
         '200':
@@ -498,6 +506,7 @@ paths:
           in: query
           schema:
             type: string
+          required: true
           example: GetObjectRelationshipMappingData
         - name: id
           in: query
