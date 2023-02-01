@@ -109,12 +109,12 @@ paths:
             type: string
           required: true
           example: GetFormData
-        - name: startNumber
+        - name: offset
           in: query
           schema:
             type: integer
           example: '0'
-        - name: endNumber
+        - name: limit
           in: query
           schema:
             type: integer
@@ -156,6 +156,7 @@ paths:
           schema:
             type: string
           example: '{{current_form_id}}'
+          required: true
       responses:
         '200':
           description: Successful response
@@ -218,17 +219,27 @@ paths:
             type: string
           required: true
           example: GetQuestionData
-        - name: startNumber
+        - name: offset
           in: query
           schema:
             type: integer
           example: '0'
-        - name: endNumber
+        - name: limit
           in: query
           schema:
             type: integer
           example: '17'
         - name: id
+          in: query
+          schema:
+            type: string
+          example: a0h4w00000QwnWTAAZ
+        - name: formVersionId
+          in: query
+          schema:
+            type: string
+          example: a0h4w00000QwnWTAAZ
+        - name: formId
           in: query
           schema:
             type: string
@@ -261,6 +272,7 @@ paths:
           schema:
             type: string
           example: '{{current_question_id}}'
+          required: true
       responses:
         '200':
           description: Successful response
@@ -294,13 +306,33 @@ paths:
           schema:
             type: string
           example: a0hDn000000gLXeIAM
+        - name: formVersionId
+          in: query
+          schema:
+            type: string
+          example: a0h4w00000QwnWTAAZ
+        - name: id
+          in: query
+          schema:
+            type: string
+          example: a0h4w00000QwnWTAAZ
+        - name: offset
+          in: query
+          schema:
+            type: integer
+          example: "0"
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          example: "10"
       responses:
         '200':
           description: Successful response
           content:
-            application/json: 
-               schema:
-                  $ref: "#/components/schemas/ResponseArray" 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FormMappingSearch"
     put:
       operationId: upsertFormMapping
       tags:
@@ -332,9 +364,9 @@ paths:
         '200':
           description: Successful response
           content:
-            application/json: 
-               schema:
-                  $ref: "#/components/schemas/FormMappingSearch" 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseArray"
     delete:
       operationId: deleteFormMapping
       tags:
@@ -356,6 +388,7 @@ paths:
           schema:
             type: string
           example: '{{current_form_mapping_id}}'
+          required: true
       responses:
         '200':
           description: Successful response
@@ -418,6 +451,26 @@ paths:
             type: string
           required: true
           example: GetSkipLogicData
+        - name: formVersionId
+          in: query
+          schema:
+            type: string
+          example: a0h4w00000QwnWTAAZ
+        - name: id
+          in: query
+          schema:
+            type: string
+          example: a0h4w00000QwnWTAAZ
+        - name: offset
+          in: query
+          schema:
+            type: integer
+          example: "0"
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          example: "10"
       responses:
         '200':
           description: Successful response
@@ -446,6 +499,7 @@ paths:
           schema:
             type: string
           example: '{{current_skip_logic_id}}'
+          required: true
       responses:
         '200':
           description: Successful response
@@ -513,6 +567,26 @@ paths:
           schema:
             type: string
           example: '{{current_orm}}'
+        - name: formVersionId
+          in: query
+          schema:
+            type: string
+          example: a0h4w00000QwnWTAAZ
+        - name: formId
+          in: query
+          schema:
+            type: string
+          example: a0h4w00000QwnWTAAZ
+        - name: offset
+          in: query
+          schema:
+            type: integer
+          example: "0"
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          example: "10"
       responses:
         '200':
           description: Successful response
@@ -541,6 +615,7 @@ paths:
           schema:
             type: string
           example: '{{current_orm}}'
+          required: true
       responses:
         '200':
           description: Successful response
@@ -596,6 +671,10 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Form"
+      required:
+        - filteredCount
+        - unfilteredCount
+        - records
     QuestionSearch:
       properties:
         filteredCount:
@@ -610,6 +689,10 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Question"
+      required:
+        - filteredCount
+        - unfilteredCount
+        - records
     SkipLogicSearch:
       properties:
         filteredCount:
@@ -624,6 +707,10 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/SkipLogic"
+      required:
+        - filteredCount
+        - unfilteredCount
+        - records
     FormMappingSearch:
       properties:
         filteredCount:
@@ -637,7 +724,11 @@ components:
         records:
           type: array
           items:
-            $ref: "#/components/schemas/FormMapping" 
+            $ref: "#/components/schemas/FormMapping"
+      required:
+        - filteredCount
+        - unfilteredCount
+        - records
     ObjectRelationshipMappingSearch:
       properties:
         filteredCount:
@@ -652,7 +743,11 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/ObjectRelationshipMapping"
-    Form: 
+      required:
+        - filteredCount
+        - unfilteredCount
+        - records
+    Form:
       properties:
         externalId: 
           type: string
@@ -935,15 +1030,7 @@ components:
           type: string
           description: Api Field Name of the mapped object to save the Form data
           example: ""
-        IsReference: 
-          type: boolean
-          description: Whether the form mapping is a reference object or not.
-          example: false
-        matching: 
-          type: string
-          description: This field is used to prevent duplicate record creation when users sync data from mobile.  
-          example: ""
-        repeat: 
+        repeat:
           type: string
           description: Which repeat section "id" field to use for this form mapping repeat.
           example: ""
@@ -958,7 +1045,15 @@ components:
         questionMappings:
           type: array
           items:
-            $ref: "#/components/schemas/QuestionMapping" 
+            $ref: "#/components/schemas/QuestionMapping"
+        isReference:
+          type: boolean
+          description: Whether the form mapping is a reference object or not.
+          example: false
+        matchingField:
+          type: string
+          description: This field is used to prevent duplicate record creation when users sync data from mobile.
+          example: ""
     QuestionMapping:
       properties:
         externalId: 
