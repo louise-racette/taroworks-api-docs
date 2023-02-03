@@ -921,6 +921,7 @@ components:
             type: string
             description: Type of the question. Allowed values are
             enum: ['section',
+                    'repeat',
                     'text-short',
                     'text-long',
                     'number',
