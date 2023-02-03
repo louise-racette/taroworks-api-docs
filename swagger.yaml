@@ -838,6 +838,17 @@ components:
           dynamicOperationType: 
             type: string
             description: Calculation or Validation dynamic operation
+            example: "Calculation"
+            enum:
+              - Calculation
+              - Validation
+          dynamicOperation:
+            type: string
+            description: Javascript to execute for dynamic operation
+            example: "tw.section1.name = tw.section1.name.toLowerCase()"
+          dynamicOperationTestData:
+            type: string
+            description: Test data for dynamic operation
             example: ""
           exampleOfValidResponse: 
             type: string
