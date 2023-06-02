@@ -52,7 +52,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Credentials"
-  /services/apexrest/formdata/v1:
+  /services/apexrest/twapi/formdata/v1:
     put:
       operationId: upsertForms
       tags:
@@ -162,7 +162,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /services/apexrest/questiondata/v1:
+  /services/apexrest/twapi/questiondata/v1:
     put:
       operationId: upsertQuestions
       tags:
@@ -278,7 +278,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /services/apexrest/formmappingdata/v1:
+  /services/apexrest/twapi/formmappingdata/v1:
     get:
       operationId: getFormMapping
       tags:
@@ -394,7 +394,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /services/apexrest/skiplogicdata/v1/:
+  /services/apexrest/twapi/skiplogicdata/v1/:
     put:
       operationId: upsertSkipLogic
       tags:
@@ -505,7 +505,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /services/apexrest/objectrelationshipmappingdata/v1:
+  /services/apexrest/twapi/objectrelationshipmappingdata/v1:
     put:
       operationId: upsertObjectMapping
       tags:
