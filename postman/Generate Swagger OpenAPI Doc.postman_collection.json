@@ -1,0 +1,88 @@
+{
+	"info": {
+		"_postman_id": "ecca4ded-b122-40b4-9ec0-e83ec0b70cb6",
+		"name": "Generate Swagger OpenAPI Doc",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4246923"
+	},
+	"item": [
+		{
+			"name": "Create OpenAPI 3.0 Spec Copy",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "OAuth {{access_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"resources\" : [\n      \"/services/data/v58.0/sobjects/twapi__SkipCondition__c\",\n      \"/services/data/v58.0/sobjects/twapi__Survey__c\",\n      \"/services/data/v58.0/sobjects/twapi__SurveyVersion__c\",\n      \"/services/data/v58.0/sobjects/twapi__Question__c\",\n      \"/services/data/v58.0/sobjects/twapi__Option__c\",\n      \"/services/data/v58.0/sobjects/twapi__SurveyMapping__c\",\n      \"/services/data/v58.0/sobjects/twapi__QuestionMapping__c\",\n      \"/services/data/v58.0/sobjects/twapi__ObjectRelationshipMapping__c\"\n   ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/services/data/v{{version}}/async/specifications/oas3",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"services",
+						"data",
+						"v{{version}}",
+						"async",
+						"specifications",
+						"oas3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Spec Copy",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "OAuth {{access_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/services/data/v{{version}}/async/specifications/oas3/NTByOEIwMDAwMDAwMDAx",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"services",
+						"data",
+						"v{{version}}",
+						"async",
+						"specifications",
+						"oas3",
+						"NTByOEIwMDAwMDAwMDAx"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
