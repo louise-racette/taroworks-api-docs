@@ -1540,9 +1540,11 @@ components:
         gfsurveys__SkipLogicBehavior__c:
           type: string
           description: Shows up on the skip logic UI - what should happen if skip logic conditions are satisfied. Valid options are "Show" or "Hide"
+          enum: [Show, Hide]
         gfsurveys__SkipLogicOperator__c:
           type: string
           description: Shows up on the skip logic UI - whether the skip logic is "All" or "Any".
+          enum: [All, Any]
         gfsurveys__SurveyLibrary__c:
           type: string
           description: '[Deprecated PPI Functionality] The Form Library that the Question was downloaded from'
@@ -1558,6 +1560,24 @@ components:
         gfsurveys__Type__c:
           type: string
           description: 'The type of the question. Allowed values are: section, text-short, text-long, number, number-integer, number-decimal, date-date, date-datetime, barcode, radio, checkbox, static-content, end_of_survey, picture, signature, cascading-level, gps-location'
+          enum: ['section',
+                    'text-short',
+                    'text-long',
+                    'number',
+                    'number-integer',
+                    'number-decimal',
+                    'date-date',
+                    'date-datetime',
+                    'barcode',
+                    'radio',
+                    'checkbox',
+                    'static-content',
+                    'end_of_survey',
+                    'picture',
+                    'signature',
+                    'cascading-level',
+                    'gps-location'
+                    ]
         gfsurveys__IsDraft__c:
           type: number
           description: Does the question belong to a form version that can be edited? (1 = True, 0 = False)
@@ -1602,6 +1622,7 @@ components:
         gfsurveys__Condition__c:
           type: string
           description: 'Condition to apply to the source question value. Valid choices are: Is, Answered, LesserThan, GreaterThan, InRange'
+          enum: ["Is","Answered","LesserThan","GreaterThan","InRange"]
         gfsurveys__Negate__c:
           type: boolean
           description: Determine if the result of the evaluation must be negated (return true instead of false, and back-wise).
@@ -1841,6 +1862,12 @@ components:
         gfsurveys__Status__c:
           type: string
           description: Status of the form version. Should not be modified through the API, instead use the frontend menus for this.
+          enum: [
+                  Draft, 
+                  Updating, 
+                  Published,
+                  Closed
+                ]
         gfsurveys__SurveyLibrary__c:
           type: string
           description: '[Deprecated PPI Functionality] The form library that the form version was downloaded from'
